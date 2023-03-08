@@ -7,8 +7,13 @@
              xmlns:local="clr-namespace:TrainStation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="277,368,0,0" VerticalAlignment="Top" Command="{Binding TestCommand}"/>
-        <Image HorizontalAlignment="Left" Height="349" Margin="10,10,0,0" VerticalAlignment="Top" Width="764" x:Name="ImageCanvas" Source="{Binding Source}"/>
-    </Grid>
+	<Grid>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="248,409,0,0" VerticalAlignment="Top" Command="{Binding TestCommand}"/>
+        <Image HorizontalAlignment="Left" Height="328" Margin="10,68,0,0" VerticalAlignment="Top" Width="764" x:Name="ImageCanvas" Source="{Binding ImageSource}"/>
+		<Label Content="Парк" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name ="ParksComboBox" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120"
+                  ItemsSource="{Binding Parks}" SelectedItem="{Binding SelectedPark}"/>
+		<ComboBox Name ="ColorComboBox" HorizontalAlignment="Left" Margin="148,41,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="Цвет заливки" HorizontalAlignment="Left" Margin="148,10,0,0" VerticalAlignment="Top"/>
+	</Grid>
 </UserControl>
