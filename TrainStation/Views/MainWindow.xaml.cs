@@ -1,8 +1,6 @@
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Shapes;
 
-namespace TrainStation
+namespace TrainStation.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -12,6 +10,8 @@ namespace TrainStation
         public MainWindow()
         {
             InitializeComponent();
+            var win = new FindWayWindow();
+            win.Show();
         }
     }
 }

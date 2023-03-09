@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace TrainStation
+namespace TrainStation.Models
 {
     public class StationPoint
     {
@@ -19,7 +19,6 @@ namespace TrainStation
         public Point secondPoint;
         public double length;
         public int index;
-
         public StationLine(int index, Point firstPoint, Point secondPoint, double length) {
             this.firstPoint = firstPoint;
             this.secondPoint = secondPoint;
@@ -51,12 +50,10 @@ namespace TrainStation
     }
 
     public static class StationStructure {
-        public static List<StationLine> Lines = new List<StationLine>();
+       
+        //public static List<StationLine> Lines = new List<StationLine>();
         public static List<StataionPark> Parks = new List<StataionPark>();
-        public static void CreateStructure() {
-
-            // Список всех точек для удобство заполнения
-            var p = new Dictionary<int, Point> {
+        public static Dictionary<int, Point> Points = new Dictionary<int, Point> {
                 { 1, new Point(160, 120) },
                 { 2, new Point(200, 80) },
                 { 3, new Point(240, 120) },
@@ -68,51 +65,64 @@ namespace TrainStation
                 { 9, new Point(400, 120) },
                 { 10, new Point(320, 160) },
                 { 11, new Point(200, 200) }
+        };
+        public static readonly Dictionary<string, List<Point>> ParkFill = new Dictionary<string, List<Point>> {
+            {"Красивый", new List<Point>{
+                Points[1],
+                Points[5],
+                Points[9],
+                Points[7],
+            } },
+            {"Сочный", new List<Point>{
+                Points[11],
+                Points[7],
+                Points[9]
+            } },
+        };
+
+        public static List<StationLine> Lines = new List<StationLine> {
+                new StationLine(1, Points[1], Points[2], 30),
+                new StationLine(2, Points[1], Points[3], 40),
+                new StationLine(3, Points[1], Points[5], 15),
+
+                new StationLine(4, Points[2], Points[7], 55),
+
+                new StationLine(5, Points[3], Points[4], 25),
+                new StationLine(6, Points[3], Points[5], 20),
+                new StationLine(7, Points[3], Points[7], 80),
+
+                new StationLine(8, Points[4], Points[6], 40),
+                new StationLine(9, Points[4], Points[8], 20),
+                new StationLine(10, Points[4], Points[9], 100),
+
+                new StationLine(11, Points[5], Points[6], 10),
+
+                new StationLine(12, Points[6], Points[10], 70),
+                new StationLine(13, Points[6], Points[11], 70),
+
+                new StationLine(14, Points[7], Points[8], 40),
             };
-
-            Lines = new List<StationLine> {
-                new StationLine(1, p[1], p[2], 30),
-                new StationLine(2, p[1], p[3], 40),
-                new StationLine(3, p[1], p[5], 15),
-
-                new StationLine(4, p[2], p[7], 55),
-
-                new StationLine(5, p[3], p[4], 25),
-                new StationLine(6, p[3], p[5], 20),
-                new StationLine(7, p[3], p[7], 80),
-
-                new StationLine(8, p[4], p[6], 40),
-                new StationLine(9, p[4], p[8], 20),
-                new StationLine(10, p[4], p[9], 100),
-
-                new StationLine(11, p[5], p[6], 10),
-
-                new StationLine(12, p[6], p[10], 70),
-                new StationLine(13, p[6], p[11], 70),
-
-                new StationLine(14, p[7], p[8], 40),
-            };
-            
+    public static void CreateStructure() {
             var l = new Dictionary<int, StationLine> {
-                { 1, new StationLine(1, p[1], p[2], 30) },
-                { 2, new StationLine(2, p[1], p[3], 40) },
-                { 3, new StationLine(3, p[1], p[5], 15) },
-                { 4, new StationLine(4, p[2], p[7], 55) },
+                { 1, new StationLine(1, Points[1], Points[2], 30) },
+                { 2, new StationLine(2, Points[1], Points[3], 40) },
+                { 3, new StationLine(3, Points[1], Points[5], 15) },
+                { 4, new StationLine(4, Points[2], Points[7], 55) },
 
-                { 5, new StationLine(5, p[3], p[4], 25) },
-                { 6, new StationLine(6, p[3], p[5], 20) },
-                { 7, new StationLine(7, p[3], p[7], 80) },
+                { 5, new StationLine(5, Points[3], Points[4], 25) },
+                { 6, new StationLine(6, Points[3], Points[5], 20) },
+                { 7, new StationLine(7, Points[3], Points[7], 80) },
 
-                { 8, new StationLine(8, p[4], p[6], 40) },
-                { 9, new StationLine(9, p[4], p[8], 20) },
-                { 10, new StationLine(10, p[4], p[9], 100) },
+                { 8, new StationLine(8, Points[4], Points[6], 40) },
+                { 9, new StationLine(9, Points[4], Points[8], 20) },
+                { 10, new StationLine(10, Points[4], Points[9], 100) },
 
-                { 11, new StationLine(11, p[5], p[6], 10) },
+                { 11, new StationLine(11, Points[5], Points[6], 10) },
 
-                { 12, new StationLine(12, p[6], p[10], 70) },
-                { 13, new StationLine(13, p[6], p[11], 70) },
+                { 12, new StationLine(12, Points[6], Points[10], 70) },
+                { 13, new StationLine(13, Points[6], Points[11], 70) },
 
-                { 14, new StationLine(14, p[7], p[8], 40) }
+                { 14, new StationLine(14, Points[7], Points[8], 40) }
             };
 
             var ways = new Dictionary<int, StataionWay> {

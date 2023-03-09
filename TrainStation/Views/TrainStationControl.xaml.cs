@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace TrainStation
+namespace TrainStation.Views
 {
     /// <summary>
     /// Interaction logic for TrainStationControl.xaml
