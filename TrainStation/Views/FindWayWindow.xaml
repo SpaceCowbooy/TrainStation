@@ -2,19 +2,31 @@
         xmlns:viewModels="using:TrainStation.FindWayViewModel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainStation.Views"
-        xmlns:local2="clr-namespace:TrainStation.Models"
         mc:Ignorable="d"
         Title="Поиск кратчайшего пути" Height="450" Width="800">
     <Grid>
         <Image Margin="0,75,0,0" Source="{Binding ImageSource}"></Image>
-		<Label Content="Откуда" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.199,0.16"/>
-		<ComboBox HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120"
-                  ItemsSource="{Binding Lines2}" SelectedItem="{Binding SelectedLineFrom}"/>
-		<Label Content="Куда" HorizontalAlignment="Left" Margin="151,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.199,0.16"/>
-		<ComboBox HorizontalAlignment="Left" Margin="151,41,0,0" VerticalAlignment="Top" Width="120"
-                  ItemsSource="{Binding Lines2}" SelectedItem="{Binding SelectedLineTo}"/>
-	</Grid>
+        <Label Content="Откуда" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.199,0.16"/>
+        <ComboBox HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="150"
+                  ItemsSource="{Binding Points}" SelectedItem="{Binding SelectedPointFrom}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding FindWayCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        <Label Content="Куда" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.199,0.16"/>
+        <ComboBox HorizontalAlignment="Left" Margin="178,41,0,0" VerticalAlignment="Top" Width="150"
+                  ItemsSource="{Binding Points}" SelectedItem="{Binding SelectedPointTo}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding FindWayCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+    </Grid>
 </Window>

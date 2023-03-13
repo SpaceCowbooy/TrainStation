@@ -87,7 +87,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\DrawingHelper.cs" />
-    <Compile Include="Models\Stations.cs" />
+    <Compile Include="Helpers\FindingWayHelper.cs" />
+    <Compile Include="Models\StationModel.cs" />
     <Compile Include="ViewModels\FindWayViewModel.cs" />
     <Compile Include="Views\FindWayWindow.xaml.cs">
       <DependentUpon>FindWayWindow.xaml</DependentUpon>

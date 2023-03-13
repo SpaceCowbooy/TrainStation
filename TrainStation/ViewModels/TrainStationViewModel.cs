@@ -9,8 +9,14 @@ using TrainStation.Helpers;
 
 namespace TrainStation
 {
+    /// <summary>
+    /// ViewModel отображения станции и парков
+    /// </summary>
     internal class TrainStationViewModel : ObservableObject
     {
+        /// <summary>
+        /// Класс для корректного отображения цветов в ComboBox
+        /// </summary>
         public class ColorDisplay {
             public SolidColorBrush color;
             public string name;
@@ -18,41 +24,7 @@ namespace TrainStation
                 this.color = color;
                 this.name = name;
             }
-        }
-        private ImageSource imageSource;
-        public ImageSource ImageSource {
-            get => imageSource;
-            set => SetProperty(ref imageSource, value);
-        }
-
-        private ObservableCollection<StataionPark> parks;
-
-        public ObservableCollection<StataionPark> Parks {
-            get => parks;
-            set => SetProperty(ref parks, value);
-        }
-
-
-
-        private ObservableCollection<SolidColorBrush> colors
-         = new ObservableCollection<SolidColorBrush> { Brushes.Green, Brushes.Red, Brushes.Yellow, Brushes.Blue };
-        public ObservableCollection<SolidColorBrush> Colors {
-            get => colors;
-            set => SetProperty(ref colors, value);
-        }
-
-        private SolidColorBrush selectedColor = Brushes.Green;
-
-        public SolidColorBrush SelectedColor {
-            get => selectedColor;
-            set => SetProperty(ref selectedColor, value);
-        }
-
-        private StataionPark selectedPark;
-
-        public StataionPark SelectedPark {
-            get => selectedPark;
-            set => SetProperty(ref selectedPark, value);
+            public override string ToString() => name;
         }
 
         private readonly DrawingHelper drawingHelper = new DrawingHelper();
@@ -64,13 +36,71 @@ namespace TrainStation
             ImageSource = drawingHelper.GetStationImage();
         }
 
+        /// <summary>
+        /// Source элемента Image, используемый для рисования
+        /// </summary>
+        public ImageSource ImageSource {
+            get => imageSource;
+            set => SetProperty(ref imageSource, value);
+        }
+        private ImageSource imageSource;
+
+        /// <summary>
+        /// Список парков
+        /// </summary>
+        public ObservableCollection<StataionPark> Parks {
+            get => parks;
+            set => SetProperty(ref parks, value);
+        }
+        private ObservableCollection<StataionPark> parks;
+
+        /// <summary>
+        /// Список доступных цветов
+        /// </summary>
+        public ObservableCollection<ColorDisplay> Colors {
+            get => colors;
+            set => SetProperty(ref colors, value);
+        }
+        private ObservableCollection<ColorDisplay> colors
+        = new ObservableCollection<ColorDisplay> {
+             new ColorDisplay(Brushes.Green, "Зеленый"),
+             new ColorDisplay(Brushes.Red, "Красный"),
+             new ColorDisplay(Brushes.Yellow, "Желтый"),
+             new ColorDisplay(Brushes.LightBlue, "Голубой"),
+        };
+
+        /// <summary>
+        /// Выбранный в ComboBox цвет
+        /// </summary>
+        public ColorDisplay SelectedColor {
+            get => selectedColor;
+            set => SetProperty(ref selectedColor, value);
+        }
+        private ColorDisplay selectedColor = new ColorDisplay(Brushes.Green, "Зеленый");
+
+        /// <summary>
+        /// Выбранный в ComboBox парк
+        /// </summary>
+        public StataionPark SelectedPark {
+            get => selectedPark;
+            set => SetProperty(ref selectedPark, value);
+        }
+        private StataionPark selectedPark;
+
+        /// <summary>
+        /// Заливает парк выбранным цветом
+        /// </summary>
         public void FillPark () {
             if (SelectedPark == null) {
                 MessageBox.Show("Выберите парк для заливки", "Предупреждение");
                 return;
             }
-            ImageSource = drawingHelper.FillPark(SelectedPark, SelectedColor);
+            ImageSource = drawingHelper.FillPark(SelectedPark, SelectedColor.color);
         }
+
+        /// <summary>
+        /// Команда для заливки
+        /// </summary>
         public ICommand FillSelectedParkCommand { get; }
     }
 }
