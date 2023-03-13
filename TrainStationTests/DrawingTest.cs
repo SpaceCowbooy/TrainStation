@@ -5,29 +5,28 @@ using TrainStation.Models;
 
 namespace TrainStationTests
 {
-	[TestClass]
-	public class DrawingTest
-	{
-		private DrawingHelper helper;
-		[TestInitialize]
-		public void Initialize()
-		{
-			helper = new DrawingHelper();
-		}
-		[TestMethod]
-		public void TestImagesAreCreated()
-		{
-			var image1 = helper.GetStationImage();
-			Assert.IsNotNull(image1);
-			Assert.IsNotNull(image1.Drawing);
+    [TestClass]
+    public class DrawingTest
+    {
+        private DrawingHelper helper;
+        [TestInitialize]
+        public void Initialize() {
+            helper = new DrawingHelper();
+        }
 
-			var image2 = helper.FillPark(StationStructure.Parks[0], Brushes.Black);
-			Assert.IsNotNull(image2);
-			Assert.IsNotNull(image2.Drawing);
+        [TestMethod]
+        public void TestImagesAreCreated() {
+            var stationImage = helper.GetStationImage();
+            Assert.IsNotNull(stationImage);
+            Assert.IsNotNull(stationImage.Drawing);
 
-			var image3 = helper.HighlightShortestWay(new System.Collections.Generic.List<int> { 0, 1, 2 });
-			Assert.IsNotNull(image3);
-			Assert.IsNotNull(image3.Drawing);
-		}
-	}
+            var filledParkImage = helper.FillPark(StationStructure.Parks[0], Brushes.Black);
+            Assert.IsNotNull(filledParkImage);
+            Assert.IsNotNull(filledParkImage.Drawing);
+
+            var shortestWayImage = helper.HighlightShortestWay(new System.Collections.Generic.List<int> { 0, 1, 2 });
+            Assert.IsNotNull(shortestWayImage);
+            Assert.IsNotNull(shortestWayImage.Drawing);
+        }
+    }
 }

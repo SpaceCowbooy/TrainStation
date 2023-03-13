@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainStation", "TrainStatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainStationTests", "TrainStationTests\TrainStationTests.csproj", "{F4D7C774-07DF-4352-9858-D589E16093BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3EAE0841-BC86-4614-97DB-C759E1F9D83D}"
+	ProjectSection(SolutionItems) = preProject
+		StationScheme.png = StationScheme.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
