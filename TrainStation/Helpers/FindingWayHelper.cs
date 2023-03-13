@@ -7,19 +7,18 @@ namespace TrainStation.Helpers
     /// Класс для поиска пути
     /// </summary>
     public class FindWayHelper {
-        private readonly Graph graph = new Graph();
+        public readonly Graph Graph = new Graph();
 
         /// <summary>
         /// Модель станции переводится в модель графа для облегчения работы алгоритма поиска пути
         /// </summary>
         public FindWayHelper() {
-            StationStructure.CreateStructure();
             foreach (var point in StationStructure.Points) {
-                graph.AddVertex(point.index);
+                Graph.AddVertex(point.index);
             }
 
             foreach (var line in StationStructure.Lines) {
-                graph.AddEdge(line.firstPoint.index, line.secondPoint.index, line.length);
+                Graph.AddEdge(line.firstPoint.index, line.secondPoint.index, line.length);
             }
         }
         /// <summary>
@@ -29,7 +28,7 @@ namespace TrainStation.Helpers
         /// <param name="toIndex"> Куда </param>
         /// <returns> Список всех точек кратчайшего пути</returns>
         public List<int> FindShortestWay(int fromIndex, int toIndex) {
-            var dijkstra = new Dijkstra(graph);
+            var dijkstra = new Dijkstra(Graph);
             var path = dijkstra.FindShortestPath(fromIndex, toIndex);
             return path;
         }

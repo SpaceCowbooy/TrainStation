@@ -8,12 +8,8 @@ namespace TrainStation.Helpers
     /// <summary>
     /// Класс для отображения визуала
     /// </summary>
-    internal class DrawingHelper
+    public class DrawingHelper
     {
-        public DrawingHelper() {
-            StationStructure.CreateStructure();
-        }
-
         private readonly Pen blackPen = new Pen(Brushes.Black, 0.5);
         private readonly Pen redPen = new Pen(Brushes.Red, 0.5);
         private readonly System.Globalization.CultureInfo ruCulture = new System.Globalization.CultureInfo("ru-ru");
@@ -90,7 +86,6 @@ namespace TrainStation.Helpers
                 for (int index = 0; index < pathIndexes.Count - 1; index++) {
                     dc.DrawLine(redPen, StationStructure.Points[pathIndexes[index]].point, StationStructure.Points[pathIndexes[index + 1]].point);
                 }
-
             }
 
             return new DrawingImage(dGroup);

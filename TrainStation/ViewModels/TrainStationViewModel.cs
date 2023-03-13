@@ -31,7 +31,6 @@ namespace TrainStation
         public TrainStationViewModel() {
 
             FillSelectedParkCommand = new RelayCommand(FillPark);
-            StationStructure.CreateStructure();
             Parks = new ObservableCollection<StataionPark>(StationStructure.Parks);
             ImageSource = drawingHelper.GetStationImage();
         }
@@ -63,8 +62,8 @@ namespace TrainStation
         }
         private ObservableCollection<ColorDisplay> colors
         = new ObservableCollection<ColorDisplay> {
-             new ColorDisplay(Brushes.Green, "Зеленый"),
              new ColorDisplay(Brushes.Red, "Красный"),
+             new ColorDisplay(Brushes.Green, "Зеленый"),
              new ColorDisplay(Brushes.Yellow, "Желтый"),
              new ColorDisplay(Brushes.LightBlue, "Голубой"),
         };

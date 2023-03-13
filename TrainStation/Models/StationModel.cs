@@ -66,7 +66,8 @@ namespace TrainStation.Models
     /// <summary>
     /// Путь
     /// </summary>
-    public class StataionWay {
+    public class StataionWay
+    {
         public List<StationLine> lines = new List<StationLine>();
         public StataionWay(List<StationLine> lines) {
             this.lines.AddRange(lines);
@@ -91,12 +92,8 @@ namespace TrainStation.Models
     /// <summary>
     /// Для хранения сведений о станции
     /// </summary>
-    public static class StationStructure {
-        /// <summary>
-        /// Список всех парков станции
-        /// </summary>
-        public static List<StataionPark> Parks = new List<StataionPark>();
-
+    public static class StationStructure
+    {
         /// <summary>
         /// Список всех точек
         /// </summary>
@@ -130,7 +127,7 @@ namespace TrainStation.Models
                 Points[8]
             } },
         };
-        
+
         /// <summary>
         /// Список всех участков
         /// </summary>
@@ -155,22 +152,19 @@ namespace TrainStation.Models
 
             new StationLine(13, Points[6], Points[7], 40)
         };
-        
-        /// <summary>
-        /// Заполнение парков и путей
-        /// </summary>
-        public static void CreateStructure() {
-            var ways = new Dictionary<int, StataionWay> {
-                {1,  new StataionWay(new List<StationLine> {Lines[1], Lines[4], Lines[9] }) },
-                {2,  new StataionWay(new List<StationLine> {Lines[3], Lines[6], Lines[5], Lines[2] }) },
-                {3,  new StataionWay(new List<StationLine> {Lines[12], Lines[11]}) },
-                {4,  new StataionWay(new List<StationLine> {Lines[7], Lines[8], Lines[13] }) },
-            };
 
-            Parks = new List<StataionPark> {
-                { new StataionPark ("Красивый", new List<StataionWay> {ways[1], ways[2] }) },
-                { new StataionPark ("Сочный", new List<StataionWay> {ways[3], ways[4] }) },
-            };
-        }
+        private static readonly Dictionary<int, StataionWay> Ways = new Dictionary<int, StataionWay> {
+            {1,  new StataionWay(new List<StationLine> {Lines[1], Lines[4], Lines[9] }) },
+            {2,  new StataionWay(new List<StationLine> {Lines[3], Lines[6], Lines[5], Lines[2] }) },
+            {3,  new StataionWay(new List<StationLine> {Lines[12], Lines[11]}) },
+            {4,  new StataionWay(new List<StationLine> {Lines[7], Lines[8], Lines[13] }) },
+        };
+        /// <summary>
+        /// Список всех парков станции
+        /// </summary>
+        public static List<StataionPark> Parks = new List<StataionPark> {
+            { new StataionPark("Красивый", new List<StataionWay> {Ways[1], Ways[2]}) },
+            { new StataionPark("Сочный", new List<StataionWay> { Ways[3], Ways[4] }) },
+        };
     }
 }
